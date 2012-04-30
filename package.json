@@ -1,0 +1,25 @@
+{
+  "author": "Kilian Ciuffolo <me@nailik.org> (http://nailik.org)",
+  "name": "json-transport",
+  "description": "JSON transport with streaming and JSONP GET/POST support",
+  "keywords": ["json", "jsonp", "transport", "middleware", "streaming"],
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/kilianc/node-json-transport.git"
+  },
+  "main" : "./",
+  "scripts": {
+    "test": "make test"
+  },
+  "engines": {
+    "node": ">= v0.6.x"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "apiserver": ">= 0.2.x",
+    "mocha": "1.0.x",
+    "should": "0.6.1",
+    "request": "2.9.x"
+  }
+}
