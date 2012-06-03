@@ -3,7 +3,7 @@
   "name": "json-transport",
   "description": "JSON transport with streaming and JSONP GET/POST support",
   "keywords": ["json", "jsonp", "transport", "middleware", "streaming"],
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "type": "git",
     "url": "http://github.com/kilianc/node-json-transport.git"
