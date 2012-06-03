@@ -93,7 +93,7 @@ describe('serveJSON()', function () {
   it('should switch to JSONP+iFrame when POST with the callback parameter', function (done) {
     jsonreq.post('http://localhost:' + defaultPort + '/v1/test/jsonp?callback=cb', function (err, response, body) {
       body.should.be.eql('<!doctype html><html><head><meta http-equiv="Content-Type" content="text/html charset=utf-8"/><script type="text/javascript">' +
-                         'document.domain = ".default.lan"parent.cb({})</script></head><body></body></html>')
+                         'document.domain = ".default.lan";parent.cb({})</script></head><body></body></html>')
       response.headers.should.have.property('content-type')
       response.headers['content-type'].should.be.equal('text/html; charset=UTF-8')
       done(err)
@@ -102,7 +102,7 @@ describe('serveJSON()', function () {
   it('should escape \\u2028 and \\u2029', function (done) {
     jsonreq.post('http://localhost:' + defaultPort + '/v1/test/jsonp_escape?callback=cb', function (err, response, body) {
       body.should.be.eql('<!doctype html><html><head><meta http-equiv="Content-Type" content="text/html charset=utf-8"/><script type="text/javascript">' +
-                         'document.domain = ".default.lan"parent.cb("\\u2028\\u2029")</script></head><body></body></html>')
+                         'document.domain = ".default.lan";parent.cb("\\u2028\\u2029")</script></head><body></body></html>')
       done(err)
     })
   })
@@ -159,11 +159,11 @@ describe('streamJSON()', function () {
   it('should switch to JSONP+iFrame when POST with the callback parameter', function (done) {
     jsonreq.post('http://localhost:' + defaultPort + '/v1/test/stream?callback=cb', function (err, response, body) {
       body.should.be.eql('<!doctype html><html><head><meta http-equiv="Content-Type" content="text/html charset=utf-8"/><script type="text/javascript">' +
-                         'document.domain = ".default.lan"parent.cb(["first",\n"second",\n"third"])</script></head><body></body></html>')
+                         'document.domain = ".default.lan";parent.cb(["first",\n"second",\n"third"])</script></head><body></body></html>')
       done(err)
     }).once('data', function (chunk) {
       chunk.toString('utf8').should.be.equal('<!doctype html><html><head><meta http-equiv="Content-Type" content="text/html charset=utf-8"/><script type="text/javascript">' + 
-                                             'document.domain = ".default.lan"parent.cb([')
+                                             'document.domain = ".default.lan";parent.cb([')
       this.once('data', function (chunk) {
         chunk.toString('utf8').should.be.equal('"first",\n')
         this.once('data', function (chunk) {
@@ -204,7 +204,7 @@ describe('streamJSON()', function () {
     it('JSONP+iFrame', function (done) {
       jsonreq.post('http://localhost:' + defaultPort + '/v1/test/stream_single?callback=cb', function (err, response, body) {
         body.should.be.eql('<!doctype html><html><head><meta http-equiv="Content-Type" content="text/html charset=utf-8"/><script type="text/javascript">' +
-                           'document.domain = ".default.lan"parent.cb([])</script></head><body></body></html>')
+                           'document.domain = ".default.lan";parent.cb([])</script></head><body></body></html>')
         done(err)
       })
     })
